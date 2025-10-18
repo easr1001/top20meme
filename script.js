@@ -1,8 +1,8 @@
 // 数据更新间隔：1小时 (毫秒)
 const UPDATE_INTERVAL = 3600000; // 3600000ms = 1小时
 
-// CoinGecko API端点
-const API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h';
+// CoinGecko API端点：专属 MEME 币类别，按市值排序前20
+const API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h';
 
 // DOM元素
 const loadingEl = document.getElementById('loading');
@@ -68,8 +68,8 @@ function updateSchema(data) {
     const schema = {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "Top 20 Crypto Memes Market Cap Ranking",
-        "description": "加密货币Meme币市值前20排名",
+        "name": "Top 20 Meme Coins Market Cap Ranking",
+        "description": "MEME 类型加密货币市值前20排名",
         "itemListElement": data.slice(0, 5).map((coin, index) => ({
             "@type": "ListItem",
             "position": index + 1,
@@ -77,6 +77,9 @@ function updateSchema(data) {
             "url": `https://www.coingecko.com/en/coins/${coin.id}`
         }))
     };
+    // 移除旧脚本，避免重复
+    const oldScript = document.querySelector('script[type="application/ld+json"]');
+    if (oldScript) oldScript.remove();
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(schema);
