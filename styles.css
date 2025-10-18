@@ -57,7 +57,6 @@ h1 {
     height: 150px;
     object-fit: cover;
     border-radius: 4px;
-    loading: lazy;
 }
 
 .meme-stats {
@@ -68,6 +67,55 @@ h1 {
 
 .change-positive { color: #51cf66; }
 .change-negative { color: #ff6b6b; }
+
+/* 新增：交易所推荐样式 */
+.exchange-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.exchange-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.exchanges-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.exchange-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.exchange-type {
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    color: white;
+}
+
+.cex { background-color: #007bff; } /* 蓝色 for CEX */
+.dex { background-color: #28a745; } /* 绿色 for DEX */
+
+.exchange-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.exchange-link:hover {
+    text-decoration: underline;
+}
 
 .loading, .error {
     text-align: center;
@@ -86,4 +134,5 @@ footer {
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
     .meme-grid { grid-template-columns: 1fr; }
+    .exchanges-list { flex-direction: column; }
 }
