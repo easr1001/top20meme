@@ -1,378 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO: Keyword-rich title -->
-    <title>Top 50 Meme Coins by Market Cap | Real-Time Crypto Rankings (Powered by DexScreener)</title>
-    <!-- SEO: Meta description -->
-    <meta name="description" content="Explore the top 50 meme coins ranked by market capitalization, updated hourly via DexScreener. Includes coin introductions, total supply, blockchain, market cap, purchase methods, recommended CEX/DEX, and wallet support.">
-    <!-- SEO: Keywords -->
-    <meta name="keywords" content="top 50 meme coins, meme coin rankings, market cap, cryptocurrency, Dogecoin, Shiba Inu, Pepe, DexScreener, blockchain, crypto exchanges, wallets">
-    <!-- SEO: Author & Robots -->
-    <meta name="author" content="Meme Coin Tracker">
-    <meta name="robots" content="index, follow">
-    <!-- Open Graph (no image) -->
-    <meta property="og:title" content="Top 50 Meme Coins by Market Cap">
-    <meta property="og:description" content="Real-time top 50 meme coins with details on supply, blockchain, market cap, exchanges, and wallets. Updated hourly via DexScreener.">
+    <title>Top 20 Crypto Memes Market Cap Ranking | 加密货币Meme币市值排行榜前20</title>
+    <meta name="title" content="Top 20 Crypto Memes Market Cap Ranking | 加密货币Meme币市值排行榜前20">
+    <meta name="description" content="实时查看加密货币Meme币市值排名前20，包括比特币、以太坊、狗狗币等热门币种的价格、市值和24h变化。每日更新，SEO优化排行榜。">
+    <meta name="keywords" content="crypto memes, meme币排行, 加密货币市值, top 20 crypto, bitcoin ranking, dogecoin market cap">
+    <meta property="og:title" content="Top 20 Crypto Memes Market Cap Ranking">
+    <meta property="og:description" content="探索前20名加密货币Meme币的实时市值排名！">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Top+20+Crypto+Memes">
+    <meta property="og:url" content="https://yourusername.github.io/crypto-memes-top20/">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <!-- Twitter Card (no image) -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Top 50 Meme Coins by Market Cap">
-    <meta name="twitter:description" content="Explore top meme coins: intros, supply, chains, cap, buys, CEX/DEX, wallets. Hourly updates via DexScreener.">
-    <!-- SEO: Canonical (dynamic) -->
-    <link rel="canonical" href="">
-    <base href="/memetop50/"> <!-- 更新为您的仓库路径 -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 1rem;
-            background: #f4f4f4;
-            color: #333;
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        h1 {
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        #refresh-btn {
-            display: block;
-            margin: 1rem auto;
-            padding: 0.5rem 1rem;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #refresh-btn:hover {
-            background: #0056b3;
-        }
-        #meme-list {
-            list-style: none;
-            padding: 0;
-        }
-        #meme-list li {
-            background: white;
-            margin-bottom: 0.5rem;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            cursor: pointer;
-        }
-        .coin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .rank {
-            font-weight: bold;
-            font-size: 1.2rem;
-            min-width: 2rem;
-        }
-        .name {
-            flex-grow: 1;
-            font-size: 1rem;
-        }
-        .market-cap {
-            text-align: right;
-            font-weight: bold;
-            color: #28a745;
-            max-width: 40%;
-            word-break: break-word;
-        }
-        .details {
-            display: none;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #f9f9f9;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-        .details.show {
-            display: block;
-        }
-        .details p {
-            margin: 0.5rem 0;
-        }
-        .details a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .details a:hover {
-            text-decoration: underline;
-        }
-        #last-updated {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 1rem;
-        }
-        #loading, #error {
-            text-align: center;
-            padding: 1rem;
-            display: none;
-        }
-        #error {
-            color: #dc3545;
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 4px;
-        }
-        @media (min-width: 600px) {
-            body {
-                padding: 2rem;
-                max-width: 1000px;
-                margin: 0 auto;
+    <link rel="canonical" href="https://yourusername.github.io/crypto-memes-top20/">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Top 20 Crypto Memes Market Cap Ranking",
+        "description": "加密货币Meme币市值前20排名",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Bitcoin",
+                "url": "https://www.coingecko.com/en/coins/bitcoin"
             }
-            h1 {
-                font-size: 2rem;
-            }
-            .coin-header {
-                flex-wrap: nowrap;
-            }
-            .name {
-                font-size: 1.1rem;
-            }
-            .details {
-                font-size: 1rem;
-            }
-            .market-cap {
-                max-width: 25%;
-            }
-        }
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #333;
-                color: #f4f4f4;
-            }
-            #meme-list li {
-                background: #444;
-            }
-            .details {
-                background: #555;
-            }
-        }
-        #meme-list li:hover .coin-header {
-            transform: scale(1.02);
-            transition: transform 0.2s ease;
-        }
-    </style>
+        ]
+    }
+    </script>
 </head>
 <body>
     <header>
-        <h1>Top 50 Meme Coins by Market Cap (DexScreener Powered)</h1>
+        <h1>Top 20 Crypto Memes Market Cap Ranking</h1>
+        <p>实时加密货币Meme币市值排行榜 | 更新时间: <span id="update-time"></span></p>
     </header>
     <main>
-        <button id="refresh-btn" onclick="fetchAndDisplayData()">Refresh Data</button>
-        <div id="loading" aria-live="polite">Loading...</div>
-        <div id="error" aria-live="polite"></div>
-        <ul id="meme-list" role="list"></ul>
-        <p id="last-updated" aria-live="polite"></p>
+        <section id="loading" class="loading">加载中... 正在获取最新市值数据</section>
+        <section id="error" class="error" style="display: none;">数据加载失败，请刷新页面。</section>
+        <ul id="meme-list" class="meme-grid" style="display: none;"></ul>
     </main>
-
-    <!-- SEO: Structured Data (JSON-LD) -->
-    <script type="application/ld+json" id="structured-data">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Top 50 Meme Coins by Market Cap",
-        "description": "Real-time rankings of the top 50 meme coins by market capitalization, updated hourly with project details, supply, blockchains, exchanges, and wallets via DexScreener.",
-        "publisher": {
-            "@type": "Organization",
-            "name": "Meme Coin Tracker"
-        },
-        "mainEntity": {
-            "@type": "ItemList",
-            "name": "Top 50 Meme Coins",
-            "itemListElement": []
-        }
-    }
-    </script>
-
-    <script>
-        // Dynamically set canonical and Open Graph URLs
-        const currentUrl = window.location.href;
-        document.querySelector('link[rel="canonical"]').href = currentUrl;
-        document.querySelector('meta[property="og:url"]').content = currentUrl;
-
-        // Cache and update settings
-        const CACHE_KEY = 'memeCoinsDataDex';
-        const CACHE_DURATION = 3600000; // 1 hour
-        const API_URL = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://api.dexscreener.com/latest/dex/search/?q=meme');
-
-        // Static coin details (extend as needed)
-        const coinDetails = {
-            'dogecoin': {
-                introduction: 'Dogecoin is a cryptocurrency created as a joke, inspired by the Shiba Inu meme, now used for tipping and payments.',
-                blockchain: 'Dogecoin (Native)',
-                cex: { name: 'Binance', url: 'https://www.binance.com' },
-                dex: { name: 'Uniswap', url: 'https://uniswap.org' },
-                wallets: { name: 'MetaMask, Trust Wallet', url: 'https://metamask.io' }
-            },
-            'shiba-inu': {
-                introduction: 'Shiba Inu is an Ethereum-based meme coin aiming to build a decentralized ecosystem.',
-                blockchain: 'Ethereum',
-                cex: { name: 'Coinbase', url: 'https://www.coinbase.com' },
-                dex: { name: 'SushiSwap', url: 'https://sushiswap.org' },
-                wallets: { name: 'MetaMask, Coinbase Wallet', url: 'https://metamask.io' }
-            },
-            'pepe': {
-                introduction: 'Pepe is a frog-themed meme coin on Ethereum, inspired by the Pepe the Frog internet meme.',
-                blockchain: 'Ethereum',
-                cex: { name: 'Binance', url: 'https://www.binance.com' },
-                dex: { name: 'Uniswap', url: 'https://uniswap.org' },
-                wallets: { name: 'MetaMask, WalletConnect', url: 'https://metamask.io' }
-            },
-            // 添加更多默认细节...
-            'default': {
-                introduction: 'No introduction available. A community-driven meme coin on DEX.',
-                blockchain: 'Ethereum or Solana',
-                cex: { name: 'Binance', url: 'https://www.binance.com' },
-                dex: { name: 'Uniswap', url: 'https://uniswap.org' },
-                wallets: { name: 'MetaMask', url: 'https://metamask.io' }
-            }
-        };
-
-        // Mock fallback data (基于 2025-10-18 CoinGecko 数据模拟，扩展到 50 个示例)
-        const mockData = [
-            { id: 'dogecoin', name: 'Dogecoin', symbol: 'DOGE', market_cap: 27580000000, total_supply: null, current_price: 0.1923, blockchain: 'Dogecoin' },
-            { id: 'shiba-inu', name: 'Shiba Inu', symbol: 'SHIB', market_cap: 10120000000, total_supply: 589000000000000000, current_price: 0.0000172, blockchain: 'Ethereum' },
-            { id: 'pepe', name: 'Pepe', symbol: 'PEPE', market_cap: 4120000000, total_supply: 420690000000000000, current_price: 0.0000098, blockchain: 'Ethereum' },
-            { id: 'bonk', name: 'Bonk', symbol: 'BONK', market_cap: 1980000000, total_supply: 93000000000000000, current_price: 0.000028, blockchain: 'Solana' },
-            { id: 'dogwifhat', name: 'dogwifhat', symbol: 'WIF', market_cap: 1230000000, total_supply: 998844343410, current_price: 2.34, blockchain: 'Solana' },
-            // ... 扩展到 50 个（简化，这里示意前 5 个；实际添加更多如 FLOKI, TRUMP 等）
-            { id: 'floki', name: 'FLOKI', symbol: 'FLOKI', market_cap: 1520000000, total_supply: 10000000000000, current_price: 0.000156, blockchain: 'Ethereum' },
-            // 继续添加 44 个类似条目...
-        ];
-
-        // Cache functions
-        function getCachedData() {
-            const cached = localStorage.getItem(CACHE_KEY);
-            if (cached) {
-                const { data: storedData, timestamp } = JSON.parse(cached);
-                if (Date.now() - timestamp < CACHE_DURATION) return storedData;
-            }
-            return null;
-        }
-        function cacheData(data) {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
-        }
-
-        // Format number based on value
-        function formatNumber(value) {
-            if (!value) return 'Unknown';
-            if (value >= 1e9) return `$${(value / 1e9).toFixed(2)}B`;
-            if (value >= 1e6) return `$${(value / 1e6).toFixed(2)}M`;
-            return `$${value.toLocaleString('en-US')}`;
-        }
-
-        // Fetch and display data
-        async function fetchAndDisplayData() {
-            const memeList = document.getElementById('meme-list');
-            const lastUpdated = document.getElementById('last-updated');
-            const loading = document.getElementById('loading');
-            const errorDiv = document.getElementById('error');
-            loading.style.display = 'block';
-            errorDiv.style.display = 'none';
-            memeList.innerHTML = '';
-
-            let data = getCachedData();
-            let fromCache = false;
-            if (!data || data.length < 10) {  // 如果缓存少，尝试 fetch
-                try {
-                    const response = await fetch(API_URL);
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const apiResponse = await response.json();
-                    // DexScreener 返回 {pairs: [...]}, 映射到币种数据
-                    data = (apiResponse.pairs || []).map(pair => ({
-                        id: pair.baseToken.symbol.toLowerCase(),
-                        name: pair.baseToken.name,
-                        symbol: pair.baseToken.symbol,
-                        market_cap: pair.marketCap || 0,
-                        total_supply: pair.fdv ? pair.fdv / pair.priceUsd : null,  // 估算总量
-                        current_price: parseFloat(pair.priceUsd) || 0
-                    })).slice(0, 50);  // 限 50
-                    // 客户端按 market_cap 降序排序
-                    data.sort((a, b) => (b.market_cap || 0) - (a.market_cap || 0));
-                    cacheData(data);
-                } catch (error) {
-                    console.error('Error fetching DexScreener data:', error);
-                    data = mockData;  // Fallback
-                    errorDiv.innerHTML = `Error loading DexScreener data: ${error.message}. Using mock data. <button onclick="fetchAndDisplayData()">Retry</button>`;
-                    errorDiv.style.display = 'block';
-                }
-            } else {
-                fromCache = true;
-            }
-
-            // Render list (补全到 50，如果少用 mock)
-            if (data.length < 50) data = [...data, ...mockData.slice(0, 50 - data.length)];
-
-            const structuredDataList = [];
-            data.forEach((coin, index) => {
-                const details = coinDetails[coin.id] || coinDetails['default'];
-                const totalSupply = formatNumber(coin.total_supply);
-                const marketCap = formatNumber(coin.market_cap);
-                const li = document.createElement('li');
-                li.setAttribute('role', 'listitem');
-                li.innerHTML = `
-                    <div class="coin-header">
-                        <span class="rank">${index + 1}</span>
-                        <span class="name">${coin.name} (${coin.symbol.toUpperCase()})</span>
-                        <span class="market-cap">${marketCap}</span>
-                    </div>
-                    <div class="details">
-                        <p><strong>Project Introduction:</strong> ${details.introduction}</p>
-                        <p><strong>Total Supply:</strong> ${totalSupply}</p>
-                        <p><strong>Issuing Blockchain:</strong> ${details.blockchain || coin.blockchain}</p>
-                        <p><strong>Purchase Method:</strong> Buy via centralized or decentralized exchanges.</p>
-                        <p><strong>Recommended CEX:</strong> <a href="${details.cex.url}" target="_blank" rel="noopener">${details.cex.name}</a></p>
-                        <p><strong>Recommended DEX:</strong> <a href="${details.dex.url}" target="_blank" rel="noopener">${details.dex.name}</a></p>
-                        <p><strong>Supported Wallets:</strong> <a href="${details.wallets.url}" target="_blank" rel="noopener">${details.wallets.name}</a></p>
-                    </div>
-                `;
-                li.addEventListener('click', () => {
-                    const detailsDiv = li.querySelector('.details');
-                    detailsDiv.classList.toggle('show');
-                });
-                memeList.appendChild(li);
-
-                structuredDataList.push({
-                    "@type": "ListItem",
-                    "position": index + 1,
-                    "item": {
-                        "@type": "Cryptocurrency",
-                        "name": coin.name,
-                        "description": details.introduction,
-                        "currency": coin.symbol.toUpperCase()
-                    }
-                });
-            });
-
-            // Update structured data
-            const structuredData = document.getElementById('structured-data');
-            const updatedJson = {
-                ...JSON.parse(structuredData.textContent),
-                mainEntity: { ...JSON.parse(structuredData.textContent).mainEntity, itemListElement: structuredDataList }
-            };
-            structuredData.textContent = JSON.stringify(updatedJson, null, 2);
-
-            loading.style.display = 'none';
-            lastUpdated.textContent = `Last updated: ${new Date().toLocaleString()} ${fromCache ? '(from cache, DexScreener)' : ''}`;
-        }
-
-        // Initial load
-        fetchAndDisplayData();
-        // Hourly update
-        setInterval(fetchAndDisplayData, 3600000);
-    </script>
+    <footer>
+        <p>&copy; 2025 Crypto Memes Top 20. 数据来源: CoinGecko API.</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
