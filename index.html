@@ -3,7 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 50 Strongest Meme Coins by Market Cap</title>
+    <!-- SEO: Descriptive, keyword-rich title -->
+    <title>Top 50 Meme Coins by Market Cap | Real-Time Crypto Rankings</title>
+    <!-- SEO: Meta description for search snippets -->
+    <meta name="description" content="Explore the top 50 meme coins ranked by market capitalization, updated hourly. Find project details, blockchain platforms, and trusted exchanges.">
+    <!-- SEO: Keywords for relevance -->
+    <meta name="keywords" content="meme coins, cryptocurrency, market cap, top 50, Dogecoin, Shiba Inu, Pepe, blockchain, crypto exchanges, decentralized finance">
+    <!-- SEO: Author and robots -->
+    <meta name="author" content="Meme Coin Rankings">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Top 50 Meme Coins by Market Cap">
+    <meta property="og:description" content="Real-time rankings of the top 50 meme coins by market cap, with project details, blockchains, and exchange recommendations.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/og-image.jpg"> <!-- Relative path, replace with your image -->
+    <meta property="og:image:alt" content="Top 50 Meme Coins Logo">
+    <!-- Twitter Card for Twitter/X sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Top 50 Meme Coins by Market Cap">
+    <meta name="twitter:description" content="Discover the top 50 meme coins with real-time market cap rankings, project info, and exchange details.">
+    <meta name="twitter:image" content="/assets/og-image.jpg"> <!-- Relative path -->
+    <!-- SEO: Canonical URL (set dynamically in JS) -->
+    <link rel="canonical" href="">
+    <!-- Base URL for relative paths -->
+    <base href="/">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -146,19 +169,46 @@
     </style>
 </head>
 <body>
-    <h1>Top 50 Strongest Meme Coins by Market Cap</h1>
-    <div id="loading">Loading...</div>
-    <ul id="meme-list"></ul>
-    <p id="last-updated"></p>
+    <header>
+        <h1>Top 50 Meme Coins by Market Cap</h1>
+    </header>
+    <main>
+        <div id="loading" aria-live="polite">Loading...</div>
+        <ul id="meme-list" role="list"></ul>
+        <p id="last-updated" aria-live="polite"></p>
+    </main>
+
+    <!-- SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Top 50 Meme Coins by Market Cap",
+        "description": "Real-time rankings of the top 50 meme coins by market capitalization, updated hourly with project details and exchange recommendations.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Meme Coin Rankings"
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Top 50 Meme Coins",
+            "itemListElement": []
+        }
+    }
+    </script>
 
     <script>
+        // Dynamically set canonical URL and Open Graph URL
+        const currentUrl = window.location.href;
+        document.querySelector('link[rel="canonical"]').href = currentUrl;
+        document.querySelector('meta[property="og:url"]').content = currentUrl;
+
         // 缓存键和更新间隔（1小时 = 3600000毫秒）
         const CACHE_KEY = 'memeCoinsData';
         const CACHE_DURATION = 3600000;
-        // 更新 API：per_page=50 以获取前50
         const API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&per_page=50&page=1';
 
-        // 模拟额外数据（扩展以覆盖更多币种）
+        // 模拟额外数据（可扩展或替换为 API）
         const coinDetails = {
             'dogecoin': {
                 introduction: 'Dogecoin is a cryptocurrency created as a joke, inspired by the Shiba Inu meme, now used for tipping and payments.',
@@ -177,9 +227,7 @@
                 blockchain: 'Ethereum',
                 cex: { name: 'Binance', url: 'https://www.binance.com' },
                 dex: { name: 'Uniswap', url: 'https://uniswap.org' }
-            },
-            // 添加更多常见 meme 币的静态数据，或通过额外 API 动态获取
-            // 示例：'bonk': { ... }
+            }
         };
 
         // 获取并显示数据
@@ -205,6 +253,8 @@
             }
 
             memeList.innerHTML = '';
+            const structuredDataList = [];
+
             data.forEach((coin, index) => {
                 const details = coinDetails[coin.id] || {
                     introduction: 'No introduction available.',
@@ -214,6 +264,7 @@
                 };
 
                 const li = document.createElement('li');
+                li.setAttribute('role', 'listitem');
                 li.innerHTML = `
                     <div class="coin-header">
                         <span class="rank">${index + 1}</span>
@@ -224,8 +275,8 @@
                         <p><strong>Project Introduction:</strong> ${details.introduction}</p>
                         <p><strong>Issuing Blockchain:</strong> ${details.blockchain}</p>
                         <p><strong>Purchase Method:</strong> Buy via centralized or decentralized exchanges.</p>
-                        <p><strong>Recommended CEX:</strong> <a href="${details.cex.url}" target="_blank">${details.cex.name}</a></p>
-                        <p><strong>Recommended DEX:</strong> <a href="${details.dex.url}" target="_blank">${details.dex.name}</a></p>
+                        <p><strong>Recommended CEX:</strong> <a href="${details.cex.url}" target="_blank" rel="noopener">${details.cex.name}</a></p>
+                        <p><strong>Recommended DEX:</strong> <a href="${details.dex.url}" target="_blank" rel="noopener">${details.dex.name}</a></p>
                     </div>
                 `;
                 li.addEventListener('click', () => {
@@ -233,7 +284,27 @@
                     detailsDiv.classList.toggle('show');
                 });
                 memeList.appendChild(li);
+
+                // SEO: Add to structured data
+                structuredDataList.push({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "item": {
+                        "@type": "Cryptocurrency",
+                        "name": coin.name,
+                        "description": details.introduction,
+                        "currency": coin.symbol.toUpperCase(),
+                        "marketCap": `$${Math.round(coin.market_cap / 1e9)}B`
+                    }
+                });
             });
+
+            // Update structured data with dynamic URL
+            const structuredDataScript = document.querySelector('script[type="application/ld+json"]');
+            const structuredData = JSON.parse(structuredDataScript.textContent);
+            structuredData.url = currentUrl;
+            structuredData.mainEntity.itemListElement = structuredDataList;
+            structuredDataScript.textContent = JSON.stringify(structuredData);
 
             const timestamp = new Date(getCacheTimestamp() || Date.now());
             lastUpdated.textContent = `Last updated: ${timestamp.toLocaleString()}`;
