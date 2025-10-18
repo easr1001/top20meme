@@ -1,0 +1,138 @@
+/* 基础样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.meme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 1rem;
+    margin: 0;
+}
+
+.meme-item {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.meme-item:hover {
+    transform: translateY(-5px);
+}
+
+.meme-rank {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6b6b;
+}
+
+.meme-name {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.meme-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.meme-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.change-positive { color: #51cf66; }
+.change-negative { color: #ff6b6b; }
+
+/* 交易所推荐样式 */
+.exchange-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.exchange-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.exchanges-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.exchange-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.exchange-type {
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    color: white;
+}
+
+.cex { background-color: #007bff; } /* 蓝色 for CEX */
+.dex { background-color: #28a745; } /* 绿色 for DEX */
+
+.exchange-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.exchange-link:hover {
+    text-decoration: underline;
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #333;
+    color: white;
+}
+
+/* 移动响应 */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    .meme-grid { grid-template-columns: 1fr; }
+    .exchanges-list { flex-direction: column; }
+}
