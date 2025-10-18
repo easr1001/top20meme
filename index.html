@@ -3,30 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 50 Strongest Meme Coins by Market Cap</title>
+    <!-- SEO: Keyword-rich title -->
+    <title>Top 50 Meme Coins by Market Cap | Real-Time Crypto Rankings</title>
+    <!-- SEO: Meta description -->
+    <meta name="description" content="Explore the top 50 meme coins ranked by market capitalization, updated hourly. Includes coin introductions, total supply, blockchain, market cap, purchase methods, recommended CEX/DEX, and wallet support.">
+    <!-- SEO: Keywords -->
+    <meta name="keywords" content="top 50 meme coins, meme coin rankings, market cap, cryptocurrency, Dogecoin, Shiba Inu, Pepe, blockchain, crypto exchanges, wallets">
+    <!-- SEO: Author & Robots -->
+    <meta name="author" content="Meme Coin Tracker">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph (no image) -->
+    <meta property="og:title" content="Top 50 Meme Coins by Market Cap">
+    <meta property="og:description" content="Real-time top 50 meme coins with details on supply, blockchain, market cap, exchanges, and wallets. Updated hourly.">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card (no image) -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Top 50 Meme Coins by Market Cap">
+    <meta name="twitter:description" content="Explore top meme coins: intros, supply, chains, cap, buys, CEX/DEX, wallets. Hourly updates.">
+    <!-- SEO: Canonical (dynamic) -->
+    <link rel="canonical" href="">
+    <base href="/">
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 1rem;
-            background-color: #f4f4f4;
+            background: #f4f4f4;
             color: #333;
             max-width: 100%;
             overflow-x: hidden;
         }
-
         h1 {
             text-align: center;
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
-
         #meme-list {
             list-style: none;
             padding: 0;
         }
-
         #meme-list li {
             background: white;
             margin-bottom: 0.5rem;
@@ -35,7 +51,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             cursor: pointer;
         }
-
         .coin-header {
             display: flex;
             justify-content: space-between;
@@ -43,24 +58,22 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-
         .rank {
             font-weight: bold;
             font-size: 1.2rem;
             min-width: 2rem;
         }
-
         .name {
             flex-grow: 1;
             font-size: 1rem;
         }
-
         .market-cap {
             text-align: right;
             font-weight: bold;
             color: #28a745;
+            max-width: 40%;
+            word-break: break-word;
         }
-
         .details {
             display: none;
             margin-top: 1rem;
@@ -69,76 +82,64 @@
             border-radius: 4px;
             font-size: 0.9rem;
         }
-
         .details.show {
             display: block;
         }
-
         .details p {
             margin: 0.5rem 0;
         }
-
         .details a {
             color: #007bff;
             text-decoration: none;
         }
-
         .details a:hover {
             text-decoration: underline;
         }
-
         #last-updated {
             text-align: center;
             font-size: 0.9rem;
             color: #666;
             margin-top: 1rem;
         }
-
         #loading {
             text-align: center;
             padding: 1rem;
             display: none;
         }
-
         @media (min-width: 600px) {
             body {
                 padding: 2rem;
                 max-width: 1000px;
                 margin: 0 auto;
             }
-
             h1 {
                 font-size: 2rem;
             }
-
             .coin-header {
                 flex-wrap: nowrap;
             }
-
             .name {
                 font-size: 1.1rem;
             }
-
             .details {
                 font-size: 1rem;
             }
+            .market-cap {
+                max-width: 25%;
+            }
         }
-
         @media (prefers-color-scheme: dark) {
             body {
-                background-color: #333;
+                background: #333;
                 color: #f4f4f4;
             }
-
             #meme-list li {
                 background: #444;
             }
-
             .details {
                 background: #555;
             }
         }
-
         #meme-list li:hover .coin-header {
             transform: scale(1.02);
             transition: transform 0.2s ease;
@@ -146,43 +147,80 @@
     </style>
 </head>
 <body>
-    <h1>Top 50 Strongest Meme Coins by Market Cap</h1>
-    <div id="loading">Loading...</div>
-    <ul id="meme-list"></ul>
-    <p id="last-updated"></p>
+    <header>
+        <h1>Top 50 Meme Coins by Market Cap</h1>
+    </header>
+    <main>
+        <div id="loading" aria-live="polite">Loading...</div>
+        <ul id="meme-list" role="list"></ul>
+        <p id="last-updated" aria-live="polite"></p>
+    </main>
+
+    <!-- SEO: Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Top 50 Meme Coins by Market Cap",
+        "description": "Real-time rankings of the top 50 meme coins by market capitalization, updated hourly with project details, supply, blockchains, exchanges, and wallets.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Meme Coin Tracker"
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Top 50 Meme Coins",
+            "itemListElement": []
+        }
+    }
+    </script>
 
     <script>
-        // 缓存键和更新间隔（1小时 = 3600000毫秒）
+        // Dynamically set canonical and Open Graph URLs
+        const currentUrl = window.location.href;
+        document.querySelector('link[rel="canonical"]').href = currentUrl;
+        document.querySelector('meta[property="og:url"]').content = currentUrl;
+
+        // Cache and update settings
         const CACHE_KEY = 'memeCoinsData';
-        const CACHE_DURATION = 3600000;
-        // 更新 API：per_page=50 以获取前50
+        const CACHE_DURATION = 3600000; // 1 hour
         const API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&per_page=50&page=1';
 
-        // 模拟额外数据（扩展以覆盖更多币种）
+        // Static coin details (extend or replace with API)
         const coinDetails = {
             'dogecoin': {
                 introduction: 'Dogecoin is a cryptocurrency created as a joke, inspired by the Shiba Inu meme, now used for tipping and payments.',
                 blockchain: 'Dogecoin (Native)',
                 cex: { name: 'Binance', url: 'https://www.binance.com' },
-                dex: { name: 'Uniswap', url: 'https://uniswap.org' }
+                dex: { name: 'Uniswap', url: 'https://uniswap.org' },
+                wallets: { name: 'MetaMask, Trust Wallet', url: 'https://metamask.io' }
             },
             'shiba-inu': {
                 introduction: 'Shiba Inu is an Ethereum-based meme coin aiming to build a decentralized ecosystem.',
                 blockchain: 'Ethereum',
                 cex: { name: 'Coinbase', url: 'https://www.coinbase.com' },
-                dex: { name: 'SushiSwap', url: 'https://sushiswap.org' }
+                dex: { name: 'SushiSwap', url: 'https://sushiswap.org' },
+                wallets: { name: 'MetaMask, Coinbase Wallet', url: 'https://metamask.io' }
             },
             'pepe': {
                 introduction: 'Pepe is a frog-themed meme coin on Ethereum, inspired by the Pepe the Frog internet meme.',
                 blockchain: 'Ethereum',
                 cex: { name: 'Binance', url: 'https://www.binance.com' },
-                dex: { name: 'Uniswap', url: 'https://uniswap.org' }
-            },
-            // 添加更多常见 meme 币的静态数据，或通过额外 API 动态获取
-            // 示例：'bonk': { ... }
+                dex: { name: 'Uniswap', url: 'https://uniswap.org' },
+                wallets: { name: 'MetaMask, WalletConnect', url: 'https://metamask.io' }
+            }
         };
 
-        // 获取并显示数据
+        // Format number based on value
+        function formatNumber(value) {
+            if (!value) return 'Unknown';
+            if (value >= 1e9) {
+                return `$${(value / 1e9).toFixed(2)}B`; // e.g., $20.00B
+            }
+            return `$${value.toLocaleString('en-US')}`; // e.g., $950,000,000
+        }
+
+        // Fetch and display data
         async function fetchAndDisplayData() {
             const memeList = document.getElementById('meme-list');
             const lastUpdated = document.getElementById('last-updated');
@@ -205,27 +243,35 @@
             }
 
             memeList.innerHTML = '';
+            const structuredDataList = [];
+
             data.forEach((coin, index) => {
                 const details = coinDetails[coin.id] || {
                     introduction: 'No introduction available.',
                     blockchain: 'Unknown',
                     cex: { name: 'Binance', url: 'https://www.binance.com' },
-                    dex: { name: 'Uniswap', url: 'https://uniswap.org' }
+                    dex: { name: 'Uniswap', url: 'https://uniswap.org' },
+                    wallets: { name: 'MetaMask', url: 'https://metamask.io' }
                 };
 
+                const totalSupply = formatNumber(coin.total_supply);
+                const marketCap = formatNumber(coin.market_cap);
                 const li = document.createElement('li');
+                li.setAttribute('role', 'listitem');
                 li.innerHTML = `
                     <div class="coin-header">
                         <span class="rank">${index + 1}</span>
                         <span class="name">${coin.name} (${coin.symbol.toUpperCase()})</span>
-                        <span class="market-cap">$${Math.round(coin.market_cap / 1e9)}B</span>
+                        <span class="market-cap">${marketCap}</span>
                     </div>
                     <div class="details">
                         <p><strong>Project Introduction:</strong> ${details.introduction}</p>
+                        <p><strong>Total Supply:</strong> ${totalSupply}</p>
                         <p><strong>Issuing Blockchain:</strong> ${details.blockchain}</p>
                         <p><strong>Purchase Method:</strong> Buy via centralized or decentralized exchanges.</p>
-                        <p><strong>Recommended CEX:</strong> <a href="${details.cex.url}" target="_blank">${details.cex.name}</a></p>
-                        <p><strong>Recommended DEX:</strong> <a href="${details.dex.url}" target="_blank">${details.dex.name}</a></p>
+                        <p><strong>Recommended CEX:</strong> <a href="${details.cex.url}" target="_blank" rel="noopener">${details.cex.name}</a></p>
+                        <p><strong>Recommended DEX:</strong> <a href="${details.dex.url}" target="_blank" rel="noopener">${details.dex.name}</a></p>
+                        <p><strong>Supported Wallets:</strong> <a href="${details.wallets.url}" target="_blank" rel="noopener">${details.wallets.name}</a></p>
                     </div>
                 `;
                 li.addEventListener('click', () => {
@@ -233,43 +279,12 @@
                     detailsDiv.classList.toggle('show');
                 });
                 memeList.appendChild(li);
-            });
 
-            const timestamp = new Date(getCacheTimestamp() || Date.now());
-            lastUpdated.textContent = `Last updated: ${timestamp.toLocaleString()}`;
-            loading.style.display = 'none';
-        }
-
-        // 缓存相关函数
-        function getCachedData() {
-            const cached = localStorage.getItem(CACHE_KEY);
-            if (!cached) return null;
-
-            const { data, timestamp } = JSON.parse(cached);
-            if (Date.now() - timestamp > CACHE_DURATION) {
-                localStorage.removeItem(CACHE_KEY);
-                return null;
-            }
-            return data;
-        }
-
-        function cacheData(data) {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-                data,
-                timestamp: Date.now()
-            }));
-        }
-
-        function getCacheTimestamp() {
-            const cached = localStorage.getItem(CACHE_KEY);
-            return cached ? JSON.parse(cached).timestamp : null;
-        }
-
-        // 初始加载
-        fetchAndDisplayData();
-
-        // 每小时更新
-        setInterval(fetchAndDisplayData, CACHE_DURATION);
-    </script>
-</body>
-</html>
+                structuredDataList.push({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "item": {
+                        "@type": "Cryptocurrency",
+                        "name": coin.name,
+                        "description": details.introduction,
+                        "currency": coin
